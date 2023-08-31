@@ -93,7 +93,7 @@ class Library:
 
 
 library = Library()
-print(' Welcome to the Library System '.center(100,'-'))
+print(' Welcome to the Library System '.center(100, '-'))
 while True:
     print("1. Add Member")
     print("2. Edit Member")
@@ -115,20 +115,23 @@ while True:
         library.add_member(member)
 
     elif choice == 2:
-        # member_id = int(input(" * Enter Member ID: "))
-        # library.find_member(member_id)
-        # name = input(" * Enter member name : ")
-        # email = input(" * Enter member email : ")
-        # level = input(" * Enter member level : ")
-        # member = Member(name, email, level)
-        # library.(member)
+        member_id = int(input(" * Enter Member ID: "))
+        library.find_member(member_id)
+        name = input(" * Enter member name : ")
+        email = input(" * Enter member email : ")
+        level = input(" * Enter member level : ")
+        member = Member(name, email, level)
+        library.members.pop(member_id-1)
+        library.members.insert(member_id-1, member)
         pass
 
     elif choice == 3:
         library.display_members()
 
     elif choice == 4:
-        pass
+        index = int(input(" * Enter Member ID: "))
+        library.members.pop(index-1)
+        print(f"   -- Member {index} is deleted ")
 
     elif choice == 5:
         title = input(" * Enter book title : ")

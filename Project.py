@@ -22,11 +22,37 @@ class Member:
         self.borrowed_books = []
 
     # TODO : implement member method
-    def borrow_book(self, book):
-        pass
+    def borrow_book(self, member_id, book_id):
+        member = library.find_member(member_id)
+        book = library.find_book(book_id)
 
-    def return_book(self, book):
-        pass
+        if member and book and book.is_available and member.level == book.level:
+            self.borrowed_books.append(book)
+            book.is_available = False
+            print(f"   -- {self.name} has successfully borrowed {book.title}.")
+        elif not book:
+            print("   -- Book not found.")
+        elif not member:
+            print("   -- Member not found.")
+        elif not book.is_available:
+            print("   -- Book is not available.")
+        else:
+            print("   -- Member's level is not suitable for this book.")
+
+    def return_book(self, member_id, book_id):
+        member = library.find_member(member_id)
+        book = library.find_book(book_id)
+
+        if member and book in member.borrowed_books:
+            self.borrowed_books.remove(book)
+            book.is_available = True
+            print(f"   -- {self.name} has successfully returned {book.title}.")
+        elif not book:
+            print("   -- Book not found.")
+        elif not member:
+            print("   -- Member not found.")
+        else:
+            print("   -- Member did not borrow this book.")
 
 
 class Library:

@@ -115,6 +115,7 @@ while True:
         level = input(" * Enter member level : ")
         member = Member(name, email, level)
         library.add_member(member)
+        print("   -- Member added successfully ")
         print(" ")
 
     elif choice == 2:
@@ -127,10 +128,11 @@ while True:
         member = Member(name, email, level)
         library.members.pop(member_id-1)
         library.members.insert(member_id-1, member)
+        print("   -- Member edited successfully ")
         print(" ")
 
     elif choice == 3:
-        print(" # Show Members")
+        print(" # Show Members | Members in library")
         library.display_members()
         print(" ")
 
@@ -138,7 +140,7 @@ while True:
         print(" # Delete Member")
         index = int(input(" * Enter Member ID: "))
         library.members.pop(index-1)
-        print(f"   -- Member {index} is deleted ")
+        print(f"   -- Member {index} is deleted successfully")
         print(" ")
 
     elif choice == 5:
@@ -148,10 +150,11 @@ while True:
         level = input(" * Enter book level : ")
         book = Book(title, author, level)
         library.add_book(book)
+        print("   -- Book added successfully ")
         print(" ")
 
     elif choice == 6:
-        print(" # Show Books")
+        print(" # Show Books | Books in library")
         library.display_books()
         print(" ")
 
